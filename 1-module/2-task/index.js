@@ -1,16 +1,26 @@
-/**
- * Эту функцию трогать не нужно
- */
+
 function print(text) {
   console.log(text);
 }
 
-/**
- * Эту функцию нужно поменять так,
- * чтобы функция sayHello работала корректно
- */
-function isValid(name) {
-  // ваш код...
+
+function isValid(userName) {
+ // let hasSpace = userName.includes(' ');
+if(userName === null) {
+ 	return false;
+   
+ } 
+ 
+  if (userName.indexOf(' ') >= 0){
+ 	return false;
+ }
+
+
+ if(userName.length < 4){
+ 	return false;
+ }
+
+return true;
 }
 
 function sayHello() {
