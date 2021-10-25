@@ -1,10 +1,10 @@
 let calculator = {
 
 sum() {
-  return calculator['a'] + calculator['b'];
+  return this['a'] + this['b'];
 },
 mul() {
-  return calculator['a'] * calculator['b'];
+  return this['a'] * this['b'];
 },
 read(a, b) {
   calculator['a'] = a;

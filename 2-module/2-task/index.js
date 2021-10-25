@@ -1,5 +1,5 @@
 function isEmpty(obj) {
-for(var key in obj)
+for(let key in obj)
     {
         return false;
     }
