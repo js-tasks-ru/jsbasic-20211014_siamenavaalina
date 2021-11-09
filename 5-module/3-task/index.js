@@ -43,18 +43,11 @@ if(lastSlide != 0){
       carouselWidthPlus = carouselWidthPlus + carouselStyle;
     }
     carousel.style.transform = `translateX(${carouselWidthPlus}px)`;
-    
-if (allSlides[0] == true) {
+if (carouselStyle == -carouselWidth) {
   arrowLeft.style.display = 'none';
 }
 else{
   arrowLeft.style.display = '';
 }
   }
-  //...
-
-
-
-
-
 }
