@@ -2,6 +2,7 @@ function initCarousel() {
 
   let arrowRight = document.querySelector('.carousel .carousel__arrow_right');
   let arrowLeft = document.querySelector('.carousel .carousel__arrow_left');
+  console.log(arrowRight);
   arrowLeft.style.display = 'none';
   let arrow = document.querySelector('.carousel .carousel__arrow');
   let carousel = document.querySelector('.carousel__inner');
