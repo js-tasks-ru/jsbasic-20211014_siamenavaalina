@@ -1,11 +1,3 @@
-
-/* {
-   name: 'Вася',
-   age: 25,
-   salary: 1000,
-   city: 'Самара'
-}
-*/
 export default class UserTable {
    constructor(rows) {
       let table = document.createElement('table');
@@ -37,7 +29,7 @@ export default class UserTable {
             console.log(event.target.closest('tr'));
             event.target.closest('tr').remove();
          }
-         
+
       });
    }
 
