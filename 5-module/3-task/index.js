@@ -4,10 +4,8 @@ function initCarousel() {
   let arrowLeft = document.querySelector('.carousel .carousel__arrow_left');
   console.log(arrowRight);
   arrowLeft.style.display = 'none';
-  let arrow = document.querySelector('.carousel .carousel__arrow');
   let carousel = document.querySelector('.carousel__inner');
   let carouselWidth = carousel.offsetWidth;
-  let allSlides = document.querySelectorAll('.carousel__slide');
   let countOfSlides = document.querySelectorAll('.carousel__slide').length;
   let lastSlide = carouselWidth * (countOfSlides - 2);
 
