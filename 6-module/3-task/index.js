@@ -42,17 +42,19 @@ export default class Carousel {
       carousel.querySelector('.carousel__inner').append(itemWrap);
     });
     this.elem = carousel;
-    let carouselWidth = document.querySelector('.container').offsetWidth;
+    let carousel__inner = carousel.querySelector('.carousel__inner');
     let arrowRight = carousel.querySelector('.carousel__arrow_right');
     let arrowLeft = carousel.querySelector('.carousel__arrow_left');
     arrowLeft.style.display = 'none';
-    let carousel__inner = carousel.querySelector('.carousel__inner');
+    
     let carousel__button = carousel.querySelectorAll('.carousel__button');
     let countOfSlides = carousel.querySelectorAll('.carousel__slide').length;
 
 
     // Сдвиг слайдов при клике на правую стрелку
     arrowRight.onclick = function () {
+      let carouselWidth = document.querySelector('.carousel__inner').offsetWidth;
+
       let carouselStyle = carousel__inner.style.transform;
       let carouselWidthMinus = -carouselWidth;
 
@@ -76,6 +78,8 @@ export default class Carousel {
     // Сдвиг слайдов при клике на левую стрелку
 
     arrowLeft.onclick = function () {
+      let carouselWidth = document.querySelector('.carousel__inner').offsetWidth;
+
       let carouselStyle = carousel__inner.style.transform;
       let carouselWidthPlus = carouselWidth;
       arrowRight.style.display = '';
@@ -92,7 +96,7 @@ export default class Carousel {
       }
     }
     //клик на +
-    for (let i = 0; i < countOfSlides;i++) {
+    for (let i = 0; i < countOfSlides; i++) {
       let idName = carousel.querySelectorAll('.carousel__slide')[i].getAttribute('data-id');
       carousel__button[i].onclick = (event) => {
         let customEvent = new CustomEvent('product-add', { bubbles: true, detail: idName });
