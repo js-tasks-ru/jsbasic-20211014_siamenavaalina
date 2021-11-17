@@ -46,7 +46,6 @@ export default class Carousel {
     let arrowRight = carousel.querySelector('.carousel__arrow_right');
     let arrowLeft = carousel.querySelector('.carousel__arrow_left');
     arrowLeft.style.display = 'none';
-    
     let carousel__button = carousel.querySelectorAll('.carousel__button');
     let countOfSlides = carousel.querySelectorAll('.carousel__slide').length;
 
@@ -54,7 +53,6 @@ export default class Carousel {
     // Сдвиг слайдов при клике на правую стрелку
     arrowRight.onclick = function () {
       let carouselWidth = document.querySelector('.carousel__inner').offsetWidth;
-
       let carouselStyle = carousel__inner.style.transform;
       let carouselWidthMinus = -carouselWidth;
 
@@ -79,7 +77,6 @@ export default class Carousel {
 
     arrowLeft.onclick = function () {
       let carouselWidth = document.querySelector('.carousel__inner').offsetWidth;
-
       let carouselStyle = carousel__inner.style.transform;
       let carouselWidthPlus = carouselWidth;
       arrowRight.style.display = '';
