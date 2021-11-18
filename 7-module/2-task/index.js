@@ -36,10 +36,8 @@ export default class Modal {
   A сюда нужно добавлять содержимое тела модального окна
 </div>
 </div>
-
 </div>`
   }
-
   open() {
     document.body.classList.add('is-modal-open');
   }
