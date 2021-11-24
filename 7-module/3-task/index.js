@@ -13,42 +13,47 @@ export default class StepSlider {
 <div class="slider__progress" style="width: 50%;"></div>
 <div class="slider__steps">
 </div>`;
-    this.elem.addEventListener('click', (event) => {
 
-      let sliderWidth = document.body.querySelector('.slider').offsetWidth;
-      let eventCoordinate = (event.offsetX * 100) / sliderWidth;
+    this.elem.addEventListener('click', (event) => {
+      let leftRelative = event.offsetX / this.elem.offsetWidth;
+      let segments = this.steps - 1;
+      let eventProc = event.offsetX / this.elem.offsetWidth * 100;
       let spanAll = this.elem.querySelectorAll('.slider__steps span');
       let arr = [0];
+      
       for (let i = 1; i < this.steps; i++) {
-        let spanCoord = (sliderWidth / 4) * i;
-        arr.push(spanCoord);
+        let valuePercents = 100 / segments * i;
+        arr.push(valuePercents);
       };
+      let curr = arr[0];
       for (let i = 0; i < this.steps; i++) {
-        if (arr[i] >= event.offsetX) {
-          let sliderValue = this.elem.querySelector('.slider__value');
-          sliderValue.innerHTML = `${i}`;
+        console.log(' arr[i]: ' +  arr[i]);
 
-          for (let j = 0; j < this.steps; j++) {
+        if (Math.abs(eventProc - arr[i]) < Math.abs(eventProc - curr)) {
+curr = arr[i];
+        };
+        let sliderValue = this.elem.querySelector('.slider__value');
+        sliderValue.innerHTML = `${i}`;
+// console.log('index: ' + i);
+// console.log('eventProc: ' + eventProc);
+
+    // передвижение ползунка
+    let thumb = this.elem.querySelector('.slider__thumb');
+    let progress = this.elem.querySelector('.slider__progress');
+    thumb.style.left = `${curr}%`;
+    progress.style.width = `${curr}%`;
+
+        // добавление/удаление класса active для ползунка
+        for (let j = 0; j < this.steps; j++) {
           spanAll[j].classList.remove('slider__step-active');
-
-          }
-
-          spanAll[i].classList.add('slider__step-active');
-          let customEvent = new CustomEvent('slider-change', { bubbles: true, detail: i });
-          this.elem.dispatchEvent(customEvent);
-
-          break;
-
         }
-
+        spanAll[i].classList.add('slider__step-active');
+        let customEvent = new CustomEvent('slider-change', { bubbles: true, detail: i });
+        this.elem.dispatchEvent(customEvent);
+        
       }
-
-      let thumb = this.elem.querySelector('.slider__thumb');
-      let progress = this.elem.querySelector('.slider__progress');
-      thumb.style.left = `${eventCoordinate}%`;
-      progress.style.width = `${eventCoordinate}%`;
     });
-
+    // создание span по количеству steps
     let sliderSteps = this.elem.querySelector('.slider__steps');
     for (let i = 0; i < this.steps; i++) {
       let newSpan = document.createElement('span');
@@ -56,4 +61,4 @@ export default class StepSlider {
     }
   }
 }
-document.body.addEventListener('slider-change', (event) => console.log(event.detail));
+//document.body.addEventListener('slider-change', (event) => console.log(event.detail));
