@@ -1,63 +1,37 @@
-/**
- * Компонент, который реализует таблицу
- * с возможностью удаления строк
- *
- * Пример одного элемента, описывающего строку таблицы
- *
- *      {
-     *          name: 'Ilia',
-     *          age: 25,
-     *          salary: '1000',
-     *          city: 'Petrozavodsk'
-     *      },
- *
- */
 export default class UserTable {
-  constructor(rows) {
-    this.elem = document.createElement('table');
+   constructor(rows) {
+      let table = document.createElement('table');
+      let thead = `<thead>
+  <tr>
+      <th>Имя</th>
+      <th>Возраст</th>
+      <th>Зарплата</th>
+      <th>Город</th>
+      <th></th>
+  </tr>
+</thead>`;
+      table.innerHTML = thead;
+      let tbody = document.createElement('tbody');
 
-    this.elem.innerHTML = `
-      <thead>
-          <tr>
-            <td>Имя</td>
-            <td>Возраст</td>
-            <td>Зарплата</td>
-            <td>Город</td>
-            <td></td>
-          </tr>
-      </thead>
-    `;
+      rows.forEach(function (item) {
+         let tr = document.createElement('tr');
+         tr.innerHTML = `<td>${item.name}</td><td>${item.age}</td><td>${item.salary}</td><td>${item.city}</td><td><button>X</button></td>`;
 
-    let tableInner = rows.map(row => {
-      let cellsWithData = Object.values(row) // для каждого значения из объекта row
-        .map(value => `<td>${value}</td>`) // обернуть его в <td>
-        .join(''); // полученный массив <td>...</td> объединить в одну строку
+         tbody.appendChild(tr);
 
-      return `
-          <tr>
-            ${cellsWithData}
-            <td><button>X</button></td>
-          </tr>
-        `; // возвращаем верстку одной строки
-    }).join('');
+      });
+      table.appendChild(tbody);
+      this.elem = table;
 
-    this.elem.innerHTML += `
-      <tbody>
-        ${tableInner}
-      <tbody>
-    `; // оборачиваем полученные строчки в tbody
+      this.elem.addEventListener('click', function (event) {
 
-    this.elem.addEventListener('click', (event) => this.onClick(event));
-  }
+         if (event.target.tagName == 'BUTTON') {
+            console.log(event.target.closest('tr'));
+            event.target.closest('tr').remove();
+         }
 
-  onClick(event) {
-    if (event.target.tagName != 'BUTTON') {
-      return;
-    }
+      });
+   }
 
-    let tr = event.target.closest('tr');
-
-    tr.remove();
-  }
 
 }
